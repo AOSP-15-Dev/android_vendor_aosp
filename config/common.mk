@@ -43,62 +43,29 @@ PRODUCT_ARTIFACT_PATH_REQUIREMENT_ALLOWED_LIST += \
     system/bin/backuptool_ab.functions \
     system/bin/backuptool_postinstall.sh
 
-ifneq ($(TARGET_BUILD_VARIANT),user)
 PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
     ro.ota.allow_downgrade=true
 endif
-endif
 
 # Call Recording
-TARGET_CALL_RECORDING_SUPPORTED ?= true
-ifneq ($(TARGET_CALL_RECORDING_SUPPORTED),false)
 PRODUCT_COPY_FILES += \
     vendor/aosp/config/permissions/com.google.android.apps.dialer.call_recording_audio.features.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/permissions/com.google.android.apps.dialer.call_recording_audio.features.xml
-endif
 
 # Enable SIP+VoIP on all targets
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.software.sip.voip.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/permissions/android.software.sip.voip.xml
 
 # Enable wireless Xbox 360 controller support
-#PRODUCT_COPY_FILES += \
-#    frameworks/base/data/keyboards/Vendor_045e_Product_028e.kl:$(TARGET_COPY_OUT_PRODUCT)/usr/keylayout/Vendor_045e_Product_0719.kl
-
-# Face Unlock
-#TARGET_FACE_UNLOCK_SUPPORTED ?= $(TARGET_SUPPORTS_64_BIT_APPS)
-#
-#ifeq ($(TARGET_FACE_UNLOCK_SUPPORTED),true)
-#PRODUCT_PACKAGES += \
-#    ParanoidSense
-#
-#PRODUCT_SYSTEM_EXT_PROPERTIES += \
-#    ro.face.sense_service=true
-#
-#PRODUCT_COPY_FILES += \
-#    frameworks/native/data/etc/android.hardware.biometrics.face.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/permissions/android.hardware.biometrics.face.xml
-#endif
+PRODUCT_COPY_FILES += \
+    frameworks/base/data/keyboards/Vendor_045e_Product_028e.kl:$(TARGET_COPY_OUT_PRODUCT)/usr/keylayout/Vendor_045e_Product_0719.kl
 
 # Enforce privapp-permissions whitelist
 PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
     ro.control_privapp_permissions=enforce
 
-# Gboard side padding
-#PRODUCT_PRODUCT_PROPERTIES += \
-#    ro.com.google.ime.kb_pad_port_l=4 \
-#    ro.com.google.ime.kb_pad_port_r=4 \
-#    ro.com.google.ime.kb_pad_land_l=64 \
-#    ro.com.google.ime.kb_pad_land_r=64
-
-# Overlay
-#PRODUCT_PRODUCT_PROPERTIES += \
-#    ro.boot.vendor.overlay.theme=com.android.internal.systemui.navbar.gestural;com.google.android.systemui.gxoverlay
-
-# Include font files
-#include vendor/aosp/config/fonts.mk
-
 # Google Photos Pixel Exclusive XML
-#PRODUCT_COPY_FILES += \
-#    vendor/aosp/prebuilt/common/etc/sysconfig/pixel_2016_exclusive.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/sysconfig/pixel_2016_exclusive.xml
+PRODUCT_COPY_FILES += \
+    vendor/aosp/prebuilt/common/etc/sysconfig/pixel_2016_exclusive.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/sysconfig/pixel_2016_exclusive.xml
 
 # Lineage-specific file
 PRODUCT_COPY_FILES += \
@@ -175,6 +142,10 @@ PRODUCT_PACKAGES += \
 PRODUCT_COPY_FILES += \
     vendor/aosp/prebuilt/common/etc/init/init.openssh.rc:$(TARGET_COPY_OUT_PRODUCT)/etc/init/init.openssh.rc
 
+# Play Integrity
+PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
+    persist.sys.pixelprops.pi=true
+
 # rsync
 PRODUCT_PACKAGES += \
     rsync
@@ -200,19 +171,16 @@ PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
     dalvik.vm.systemuicompilerfilter=speed
 
 # Overlays
-#PRODUCT_ENFORCE_RRO_EXCLUDED_OVERLAYS += \
-#    vendor/aosp/overlay
+PRODUCT_ENFORCE_RRO_EXCLUDED_OVERLAYS += \
+    vendor/aosp/overlay
 
-#PRODUCT_PACKAGE_OVERLAYS += \
-#    vendor/aosp/overlay/common
+PRODUCT_PACKAGE_OVERLAYS += \
+    vendor/aosp/overlay/common
 
-#PRODUCT_PACKAGES += \
-#    AndroidBlackThemeOverlay \
-#    CustomFontPixelLauncherOverlay \
-#    DocumentsUIOverlay \
-#    NetworkStackOverlay \
-#    NavigationBarNoHintOverlay \
-#    ThemedIconsOverlay
+PRODUCT_PACKAGES += \
+    DocumentsUIOverlay \
+    NetworkStackOverlay \
+    ThemedIconsOverlay
 
 # TextClassifier
 PRODUCT_PACKAGES += \
@@ -229,8 +197,5 @@ CUSTOM_LOCALES += \
     fur_IT
 
 include vendor/aosp/config/version.mk
-
-# OTA
-#$(call inherit-product, vendor/aosp/config/ota.mk)
 
 -include $(WORKSPACE)/build_env/image-auto-bits.mk

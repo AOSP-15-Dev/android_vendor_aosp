@@ -80,15 +80,15 @@ PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
     ro.control_privapp_permissions=enforce
 
 # Gboard side padding
-PRODUCT_PRODUCT_PROPERTIES += \
-    ro.com.google.ime.kb_pad_port_l=4 \
-    ro.com.google.ime.kb_pad_port_r=4 \
-    ro.com.google.ime.kb_pad_land_l=64 \
-    ro.com.google.ime.kb_pad_land_r=64
+#PRODUCT_PRODUCT_PROPERTIES += \
+#    ro.com.google.ime.kb_pad_port_l=4 \
+#    ro.com.google.ime.kb_pad_port_r=4 \
+#    ro.com.google.ime.kb_pad_land_l=64 \
+#    ro.com.google.ime.kb_pad_land_r=64
 
 # Overlay
-PRODUCT_PRODUCT_PROPERTIES += \
-    ro.boot.vendor.overlay.theme=com.android.internal.systemui.navbar.gestural;com.google.android.systemui.gxoverlay
+#PRODUCT_PRODUCT_PROPERTIES += \
+#    ro.boot.vendor.overlay.theme=com.android.internal.systemui.navbar.gestural;com.google.android.systemui.gxoverlay
 
 # Include font files
 include vendor/aosp/config/fonts.mk
@@ -197,19 +197,19 @@ PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
     dalvik.vm.systemuicompilerfilter=speed
 
 # Overlays
-PRODUCT_ENFORCE_RRO_EXCLUDED_OVERLAYS += \
-    vendor/aosp/overlay
+#PRODUCT_ENFORCE_RRO_EXCLUDED_OVERLAYS += \
+#    vendor/aosp/overlay
 
-PRODUCT_PACKAGE_OVERLAYS += \
-    vendor/aosp/overlay/common
+#PRODUCT_PACKAGE_OVERLAYS += \
+#    vendor/aosp/overlay/common
 
-PRODUCT_PACKAGES += \
-    AndroidBlackThemeOverlay \
-    CustomFontPixelLauncherOverlay \
-    DocumentsUIOverlay \
-    NetworkStackOverlay \
-    NavigationBarNoHintOverlay \
-    ThemedIconsOverlay
+#PRODUCT_PACKAGES += \
+#    AndroidBlackThemeOverlay \
+#    CustomFontPixelLauncherOverlay \
+#    DocumentsUIOverlay \
+#    NetworkStackOverlay \
+#    NavigationBarNoHintOverlay \
+#    ThemedIconsOverlay
 
 # TextClassifier
 PRODUCT_PACKAGES += \
@@ -228,6 +228,6 @@ CUSTOM_LOCALES += \
 include vendor/aosp/config/version.mk
 
 # OTA
-$(call inherit-product, vendor/aosp/config/ota.mk)
+#$(call inherit-product, vendor/aosp/config/ota.mk)
 
 -include $(WORKSPACE)/build_env/image-auto-bits.mk

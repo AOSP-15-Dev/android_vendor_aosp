@@ -1,8 +1,3 @@
-# GMS
-ifeq ($(WITH_GMS),true)
-WITH_GMS_COMMS_SUITE := true
-endif
-
 # World APN list
 PRODUCT_PACKAGES += \
     apns-conf.xml

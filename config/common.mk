@@ -1,3 +1,6 @@
+# Default AOSP sounds
+$(call inherit-product, frameworks/base/data/sounds/AllAudio.mk)
+
 # Allow vendor/extra to override any property by setting it first
 $(call inherit-product-if-exists, vendor/extra/product.mk)
 
